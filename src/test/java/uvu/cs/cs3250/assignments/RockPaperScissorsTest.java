@@ -12,62 +12,62 @@ import org.junit.Test;
 public class RockPaperScissorsTest {
 
     @Test
-    public static void testForNull() {
+    public void testForNull() {
         assertFalse(RockPaperScissors.isValidGame(null));
     }
 
     @Test
-    public static void testForDigits() {
+    public void testForDigits() {
         String digits = "12, 23, 32";
         assertFalse(RockPaperScissors.isValidGame(digits));
     }
 
     @Test
-    public static void testForIllegalCharacters() {
+    public void testForIllegalCharacters() {
         String illegal = "RR, $R, PS";
         assertFalse(RockPaperScissors.isValidGame(illegal));
     }
 
     @Test
-    public static void testForWords() {
+    public void testForWords() {
         String words = "Rock, Paper, Paper, Scissors, Rock, Rock";
         assertFalse(RockPaperScissors.isValidGame(words));
     }
 
     @Test
-    public static void testValidGame_noSpaces() {
+    public void testValidGame_noSpaces() {
         String noSpaces = "RR,SS,PP,RP,PP";
         assertTrue(RockPaperScissors.isValidGame(noSpaces));
     }
 
     @Test
-    public static void testValidGame_withSpaces() {
+    public void testValidGame_withSpaces() {
         String withSpaces = "PR, SP, SR, SR, RS";
         assertTrue(RockPaperScissors.isValidGame(withSpaces));
     }
 
     @Test
-    public static void testValidGame_mixedSpaces() {
+    public void testValidGame_mixedSpaces() {
         String mixedSpaces = "PS, PS, SP ,RR,PR";
         assertTrue(RockPaperScissors.isValidGame(mixedSpaces));
     }
 
     @Test
-    public static void playValidGame_hanShotFirst() {
+    public void playValidGame_hanShotFirst() {
         String validGame = "RS,RR,SR,RS";
         // 1, d, 2, 1
         assertEquals("Player A wins!", RockPaperScissors.playRPS(validGame));
     }
 
     @Test
-    public static void playValidGame_greedoShotFirst() {
+    public void playValidGame_greedoShotFirst() {
         String validGame = "SR,PP,RS,SR";
         // 2, d, 1, 2
         assertEquals("Player B wins!", RockPaperScissors.playRPS(validGame));
     }
 
     @Test
-    public static void playValidGame_draw() {
+    public void playValidGame_draw() {
         String validGame = "PP,SR,RS,RR";
         // d, 2, 1, d
         assertEquals("It's a Draw!", RockPaperScissors.playRPS(validGame));
