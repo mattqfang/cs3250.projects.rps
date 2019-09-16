@@ -22,17 +22,22 @@ public class rpsTest {
 	
 	@Test 
 	public void bWin1() {		
-		assertEquals("Player B wins!", rps.rpsWins("RP, PS, PS, RS"));		
+		assertEquals("Player B wins!", rps.rpsWins(" RP, PS , PS, RS  "));		
 	}
 	
 	@Test
 	public void aWin1() {
-		assertEquals("Player A wins!", rps.rpsWins("PR, RS, RR, RS"));
+		assertEquals("Player A wins!", rps.rpsWins("    P  R, RS   ,  RR  , RS  "));
 	}
 	
 	@Test
 	public void draw1() {
-		assertEquals("It's a draw", rps.rpsWins("RR, SS, RR, PP"));
+		assertEquals("It's a draw", rps.rpsWins("   RR , S S        ,           RR, P         P  "));
+	}
+	
+	@Test
+	public void case_empty() {
+		assertEquals("Error: invalid input.", rps.rpsWins(""));
 	}
 
 }

@@ -8,6 +8,11 @@ public class rps {
 		String[] choices = {"0", "0"};
 		int aWin = 0, bWin = 0, draw = 0;
 		
+		
+		if (rounds.isEmpty()) {
+			return "Error: invalid input.";
+		}
+		
 		for(int i = 0; i < roundArr.length; i++) {
 			choices = roundArr[i].trim().split("");
 			
