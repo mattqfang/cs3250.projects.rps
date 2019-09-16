@@ -17,55 +17,23 @@ public class RPS {
 				if(moves[i].length() != 2) {
 					return "String must contain 2 letters (RPS) seperated by commas";
 				}
-				switch(moves[i].charAt(0)) {
-				case 'R':
-					switch(moves[i].charAt(1)) {
-					case 'R':
-						//Draw
-						break;
-					case 'P':
-						bWins++;
-						break;
-					case 'S':
-						aWins++;
-						break;
-					default:
-						return "String must only contain letters R, P, and S";
-					}
-					break;
-				case 'P':
-					switch(moves[i].charAt(1)) {
-					case 'R':
-						aWins++;
-						break;
-					case 'P':
-						//Draw
-						break;
-					case 'S':
-						bWins++;
-						break;
-					default:
-						return "String must only contain letters R, P, and S";
-					}
-					break;
-				case 'S':
-					switch(moves[i].charAt(1)) {
-					case 'R':
-						bWins++;
-						break;
-					case 'P':
-						aWins++;
-						break;
-					case 'S':
-						//Draw
-						break;
-					default:
-						return "String must only contain letters R, P, and S";
-					}
-					break;
-				default:
+				//A Wins Conditions
+				else if((moves[i].charAt(0) == 'R' && moves[i].charAt(1) == 'S') || (moves[i].charAt(0) == 'P' && moves[i].charAt(1) == 'R') || (moves[i].charAt(0) == 'S' && moves[i].charAt(1) == 'P')) {
+					aWins++;
+				}
+				//B Wins Conditions
+				else if((moves[i].charAt(0) == 'S' && moves[i].charAt(1) == 'R') || (moves[i].charAt(0) == 'R' && moves[i].charAt(1) == 'P') || (moves[i].charAt(0) == 'P' && moves[i].charAt(1) == 'S')) {
+					bWins++;
+				}
+				//Draw Cases
+				else if((moves[i].charAt(0) == 'R' && moves[i].charAt(1) == 'R') || (moves[i].charAt(0) == 'P' && moves[i].charAt(1) == 'P') || (moves[i].charAt(0) == 'S' && moves[i].charAt(1) == 'S')) {
+					//Draw Do Nothing
+				}
+				//Non RPS character
+				else {
 					return "String must only contain letters R, P, and S";
 				}
+				
 			}
 			if(aWins == bWins) {
 				return "Draw";
