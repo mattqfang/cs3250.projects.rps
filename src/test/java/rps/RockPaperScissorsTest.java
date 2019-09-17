@@ -30,7 +30,7 @@ public class RockPaperScissorsTest {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullIsDraw () {
+	public void testNull () {
 		RockPaperScissors.fight(null);
 	}
 
