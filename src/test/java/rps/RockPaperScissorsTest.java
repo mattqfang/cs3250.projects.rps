@@ -10,7 +10,7 @@ public class RockPaperScissorsTest {
 						 WINNER_PLAYER2 = "B",
 						 TIE_GAME = "Tie",
 						 INVALID_STRING_LENGTH = "String doesn't meet length requirements",
-						 STRING_MISSING_DELIMITER = "String must be delimited by commas",
+						 NO_GAME_CHARACTERS_IN_STRING = "No r, p, s characters found in string",
 						 INVALID_GAME_CHARS = "Invalid r, p, s characters";
 	@Test
 	public void testIsStringNull() {
@@ -39,12 +39,12 @@ public class RockPaperScissorsTest {
 	
 	@Test
 	public void testStringOnlyCommasNoLetters() {
-		assertEquals(INVALID_STRING_LENGTH, RockPaperScissors.getRPSWinner(",,,"));
+		assertEquals(NO_GAME_CHARACTERS_IN_STRING, RockPaperScissors.getRPSWinner(",,,"));
 	}
 	
 	@Test
 	public void testStringAllCommas() {
-		assertEquals(INVALID_GAME_CHARS, RockPaperScissors.getRPSWinner(",,,,,,,,,,,"));
+		assertEquals(NO_GAME_CHARACTERS_IN_STRING, RockPaperScissors.getRPSWinner(",,,,,,,,,,,"));
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ public class RockPaperScissorsTest {
 	public void testStringNumberInSetWithSpaces() {
 		assertEquals(INVALID_GAME_CHARS, RockPaperScissors.getRPSWinner("1p, pp, pp ,pp"));
 	}
-	
+	 
 	@Test
 	public void testStringInvalidLetterCommand() {
 		assertEquals(INVALID_GAME_CHARS, RockPaperScissors.getRPSWinner("pp, pp, pp ,pa"));
@@ -64,12 +64,12 @@ public class RockPaperScissorsTest {
 	
 	@Test
 	public void testStringNoCommas() {
-		assertEquals(STRING_MISSING_DELIMITER, RockPaperScissors.getRPSWinner("appppppp"));
+		assertEquals(INVALID_STRING_LENGTH, RockPaperScissors.getRPSWinner("appppppp"));
 	}
 	
 	@Test
 	public void testStringAdditionalCharacterSet() {
-		assertEquals(INVALID_STRING_LENGTH, RockPaperScissors.getRPSWinner("sp, pp, pp ,pp, pp"));
+		assertEquals(WINNER_PLAYER1, RockPaperScissors.getRPSWinner("sp, pp, pp ,pp, pp"));
 	}
 	
 	@Test
@@ -79,7 +79,7 @@ public class RockPaperScissorsTest {
 	
 	@Test
 	public void testStringMissingSomeSets() {
-		assertEquals(INVALID_STRING_LENGTH, RockPaperScissors.getRPSWinner("sp, ,  ,"));
+		assertEquals(WINNER_PLAYER1, RockPaperScissors.getRPSWinner("sp, ,  ,"));
 	}	
 	
 	@Test
@@ -102,5 +102,10 @@ public class RockPaperScissorsTest {
 	@Test
 	public void testStringCharacterSetWithDollarSign() {
 		assertEquals(INVALID_GAME_CHARS, RockPaperScissors.getRPSWinner("$P, PS,  ps,   ps"));
+	} 
+	
+	@Test
+	public void testStringOneGame() {
+		assertEquals(WINNER_PLAYER1, RockPaperScissors.getRPSWinner("sP"));
 	}
 }
