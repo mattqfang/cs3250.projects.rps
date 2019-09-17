@@ -17,7 +17,11 @@ public class RockPaperScissors {
 								REGEX_SPACE = "\\s",
 								NO_SPACE = "",
 								COMMA = ",";
-	final private static int 	REQUIRED_STRING_LENGTH = 2;
+	final private static int 	REQUIRED_STRING_LENGTH = 2,
+								INT_ONE = 1,
+								INT_NEGATIVE_ONE = -1,
+								INT_TWO = 2,
+								INT_ZERO = 0;
 	
 	static Pattern patternValidGameCharacters = Pattern.compile(REGEX_VALID_RPS_CHARS);
 	
@@ -29,7 +33,7 @@ public class RockPaperScissors {
 		
 		String[] resultArray = str.split(COMMA);
 		
-		if(resultArray.length == 0) 
+		if(resultArray.length == INT_ZERO) 
 			return NO_GAME_CHARACTERS_IN_STRING;
 	
 		int result = 0;
@@ -40,33 +44,30 @@ public class RockPaperScissors {
 		
 			if(!patternValidGameCharacters.matcher(item).matches())
 				return INVALID_GAME_CHARACTERS;
+
+			String player1 = item.substring(INT_ZERO, INT_ONE);
+			String player2 = item.substring(INT_ONE, INT_TWO);
+
+			if(player1.equalsIgnoreCase(player2)) 
+				player1 = TIE_GAME;
 			
-			if((comparePlayerSelections(item.trim()) == Integer.MIN_VALUE))
+			switch (player1) {
+			case ROCK:
+				result += (player2.equalsIgnoreCase(SCISSORS))  ? INT_ONE : INT_NEGATIVE_ONE;
+				break;
+			case PAPER:
+				result += (player2.equalsIgnoreCase(ROCK))      ? INT_ONE : INT_NEGATIVE_ONE;
+				break;
+			case SCISSORS:
+				result += (player2.equalsIgnoreCase(PAPER))     ? INT_ONE : INT_NEGATIVE_ONE;
+				break;
+			case TIE_GAME:
+				result += INT_ZERO;
+				break;
+			default:
 				return INVALID_GAME_CHARACTERS;
-			
-			result += comparePlayerSelections(item.trim()) ;
+			}
 		}	
-		return result > 0 ? WINNER_PLAYER1 : result < 0 ? WINNER_PLAYER2 : TIE_GAME;
-	}
-
-	private static int comparePlayerSelections(String selection) {
-		String player1 = selection.substring(0, 1);
-		String player2 = selection.substring(1, 2);
-
-		if(player1.equalsIgnoreCase(player2)) 
-			player1 = TIE_GAME;
-		
-		switch (player1) {
-		case ROCK:
-			return (player2.equalsIgnoreCase(SCISSORS)) ? 1 : -1;
-		case PAPER:
-			return (player2.equalsIgnoreCase(ROCK)) ? 1 : -1;
-		case SCISSORS:
-			return (player2.equalsIgnoreCase(PAPER)) ? 1 : -1;
-		case TIE_GAME:
-			return 0;
-		default:
-			return Integer.MIN_VALUE;
-		}
+		return result > INT_ZERO ? WINNER_PLAYER1 : result < INT_ZERO ? WINNER_PLAYER2 : TIE_GAME;
 	}
 }
