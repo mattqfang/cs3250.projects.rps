@@ -21,28 +21,6 @@ public class RockPaperScissors {
 	
 	static Pattern patternValidGameCharacters = Pattern.compile(REGEX_VALID_RPS_CHARS);
 	
-	public static void main(String[] args) {
-		
-		System.out.println("0 " + getRPSWinner("sp"));
-		System.out.println("1 " + getRPSWinner("sp, pp, pp ,pp, pp"));
-		System.out.println("2 " + getRPSWinner(",,,,,,,,,,,"));
-		System.out.println("3 " + getRPSWinner("ppppppppppp"));
-		System.out.println("4 " + getRPSWinner("sp, sp, pp, pp"));
-		System.out.println("5 " + getRPSWinner("sp, sp, ps, ps"));
-		System.out.println("6 " + getRPSWinner("pp, pp, ps, ps"));
-		System.out.println("7 " + getRPSWinner("sp, sp, pp, pp"));
-		System.out.println("8 " + getRPSWinner("sp,   ,   ,   "));
-		System.out.println("9 " + getRPSWinner("PP, PS,  ps,   ps"));
-		System.out.println("10 " + getRPSWinner("sp, s1  ,  ps , ps"));		
-		System.out.println("11 " + getRPSWinner("sp, s,  ,  ps , ps"));	
-		System.out.println("12 " + getRPSWinner("  ,  ,  ,  ,  "));	
-		System.out.println("13 " + getRPSWinner(",,,,,,,,,,,"));	
-		System.out.println("14 " + getRPSWinner("1p, sp, pp, p3"));	
-		System.out.println("15 " + getRPSWinner("appppppp"));
-		System.out.println("16 " + getRPSWinner("\\sp, sp, pp, pp"));
-		System.out.println("17 " + getRPSWinner("$p, sp, pp, pp"));	
-	}
-	
 	public static String getRPSWinner(String str) {
 		if(str == null || str.isEmpty()) 
 			return EMPTY_STRING;
