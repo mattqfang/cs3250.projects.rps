@@ -51,11 +51,6 @@ public class RockPaperScissorsTest {
 	public void testStringNumberInSet() {
 		assertEquals(INVALID_GAME_CHARS, RockPaperScissors.getRPSWinner("1p,pp,pp,pp"));
 	}
-	
-	@Test
-	public void testStringNumberInSetWithSpaces() {
-		assertEquals(INVALID_GAME_CHARS, RockPaperScissors.getRPSWinner("1p, pp, pp ,pp"));
-	}
 	 
 	@Test
 	public void testStringInvalidLetterCommand() {
