@@ -35,6 +35,12 @@ public class RockPaperScissorsTest {
     }
 
     @Test
+    public void testForMorePlayers() {
+        String word = "RR, RPS";
+        assertFalse(RockPaperScissors.isValidGame(word));
+    }
+
+    @Test
     public void testValidGame_noSpaces() {
         String noSpaces = "RR,SS,PP,RP,PP";
         assertTrue(RockPaperScissors.isValidGame(noSpaces));
@@ -54,23 +60,29 @@ public class RockPaperScissorsTest {
 
     @Test
     public void playValidGame_hanShotFirst() {
-        String validGame = "RS,RR,SR,RS";
+        String validGame = "RS ,RR ,SR ,RS";
         // 1, d, 2, 1
         assertEquals("Player A wins!", RockPaperScissors.playRPS(validGame));
     }
 
     @Test
     public void playValidGame_greedoShotFirst() {
-        String validGame = "SR,PP,RS,SR";
+        String validGame = "SR, PP, RS, SR";
         // 2, d, 1, 2
         assertEquals("Player B wins!", RockPaperScissors.playRPS(validGame));
     }
 
     @Test
     public void playValidGame_draw() {
-        String validGame = "PP,SR,RS,RR";
+        String validGame = "PP ,SR, RS,RR";
         // d, 2, 1, d
         assertEquals("It's a Draw!", RockPaperScissors.playRPS(validGame));
+    }
+
+    @Test
+    public void playValidGame_actuallyInvalid() {
+        String inValidGame = "$P, R@";
+        assertEquals("Sorry. The game is invalid", RockPaperScissors.playRPS(inValidGame));
     }
 
 }
