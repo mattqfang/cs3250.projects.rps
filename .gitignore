@@ -1,4 +1,7 @@
+# Remove IDE Specific config folder
+.vscode
 /target/
-.project
-.classpath
 .settings
+.classpath
+.project
+
