@@ -15,6 +15,11 @@ public class RockPaperScissorsTest {
 	}
 	
 	@Test
+	public void testDetermineWinner_manySpaces() {
+		assertEquals("", RockPaperScissors.determineWinner("     "));
+	}
+	
+	@Test
 	public void testDetermineWinner_onlyR() {
 		assertEquals("", RockPaperScissors.determineWinner("R"));
 	}
