@@ -3,24 +3,35 @@ import static org.junit.Assert.assertEquals;
 
 import rps.RockPaperScissors;
 
+// TODO: break up all asserts into their own test cases
 public class RockPaperScissorsTest {
 	@Test
-	public void testAWins () {
-		assertEquals("A", RockPaperScissors.fight("PR,PR,RP"));
-		assertEquals("A", RockPaperScissors.fight("PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR"));
+	public void testAWinsOne () {
 		assertEquals("A", RockPaperScissors.fight("SP"));
 	}
 
 	@Test
-	public void testBWins () {
-		assertEquals("B", RockPaperScissors.fight("RP,RP,PR"));
-		assertEquals("B", RockPaperScissors.fight("RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP"));
+	public void testAWinsMany () {
+		assertEquals("A", RockPaperScissors.fight("PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR"));
+	}
+
+	@Test
+	public void testBWinsOne () {
 		assertEquals("B", RockPaperScissors.fight("PS"));
 	}
 
 	@Test
-	public void testDraw () {
-		assertEquals("DRAW", RockPaperScissors.fight("RP,RP,PR,PR"));
+	public void testBWinsMany () {
+		assertEquals("B", RockPaperScissors.fight("RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP"));
+	}
+
+	@Test
+	public void testDrawOne () {
+		assertEquals("DRAW", RockPaperScissors.fight("RP,PR"));
+	}
+
+	@Test
+	public void testDrawMany () {
 		assertEquals("DRAW", RockPaperScissors.fight("RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR,RP,PR"));
 	}
 
