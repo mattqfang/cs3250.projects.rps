@@ -67,23 +67,23 @@ public class RPSTest {
 		assertEquals("Player B Wins", RPS.rpsWinner("SR, SP, RP, PS"));
 	}
 	
-	//Different Cases
+	//upper and lower case
 	//Draw case
-		@Test
-		public void testRPSWinner_draw_differentCase() {
-			assertEquals("Draw", RPS.rpsWinner("RS, sS, RP, rR"));
-		}
+	@Test
+	public void testRPSWinner_draw_differentCase() {
+		assertEquals("Draw", RPS.rpsWinner("RS, sS, RP, rR"));
+	}
 		
-		//A wins
-		@Test
-		public void testRPSWinner_aWin_differentCase() {
-			assertEquals("Player A Wins", RPS.rpsWinner("rS, Sp, rP, PR, RS, pp"));
-		}
+	//A wins
+	@Test
+	public void testRPSWinner_aWin_differentCase() {
+		assertEquals("Player A Wins", RPS.rpsWinner("rS, Sp, rP, PR, RS, pp"));
+	}
 		
-		//B wins
-		@Test
-		public void testRPSWinner_bWin_differentCase() {
-			assertEquals("Player B Wins", RPS.rpsWinner("sr, Sp, rp, PS, rr"));
-		}
+	//B wins
+	@Test
+	public void testRPSWinner_bWin_differentCase() {
+		assertEquals("Player B Wins", RPS.rpsWinner("sr, Sp, rp, PS, rr"));
+	}
 	
 }
