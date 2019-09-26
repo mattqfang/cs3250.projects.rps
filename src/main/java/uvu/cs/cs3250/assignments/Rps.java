@@ -1,50 +1,62 @@
 package uvu.cs.cs3250.assignments;
-import java.security.InvalidParameterException;
 
+import java.security.InvalidParameterException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Rps {
-  
-  public String whoWins(String input) {
-    String moves = input.toLowerCase();
-    if (input.matches(".*[^RPSrps, ].*"))
-      throw new InvalidParameterException("Incorrect symbols in input.");
- 
-    String[] players = moves
-      .toLowerCase()
-      .replaceAll("\\s+", "")
-      .split(",", 0);
 
-    if (players.length !=2)
-      throw new InvalidParameterException("Expected two players");
-    if (players[0].length() != players[1].length()) 
-      throw new InvalidParameterException("Expected players to have same number of moves");
+  Map<String, Integer> moveMap;
+  String[][] winLoseMatrix = { { "", "B", "A" }, { "A", "", "B" }, { "B", "A", "" } };
+
+  public String whoWins(String input) {
+    initMoveMap();
+    String[][] moves = sanitizeInput(input);
 
     int aScore = 0;
     int bScore = 0;
 
-    for (int i = 0; i < players[0].length(); i++) {
-      char aMove = players[0].charAt(i);
-      char bMove = players[1].charAt(i);
+    for (int i = 0; i < moves[0].length; i++) {
+      int aMove = moveMap.get(moves[0][i]);
+      int bMove = moveMap.get(moves[1][i]);
 
-      if (aMove == 'r') {
-        if (bMove == 'p') bScore++;
-        if (bMove == 's') aScore++;
-      }
+      String roundResult = winLoseMatrix[aMove][bMove];
 
-      if (aMove == 'p') {
-        if (bMove == 's') bScore++;
-        if (bMove == 'r') aScore++;
-      }
-
-      if (aMove == 's') {
-        if (bMove == 'r') bScore++;
-        if (bMove == 'p') aScore++;
-      }
+      if (roundResult.equals("A"))
+        ++aScore;
+      if (roundResult.equals("B"))
+        ++bScore;
     }
 
-    if (aScore == bScore) return "TIE";
-    String result = (aScore > bScore ? "A": "B");
+    if (aScore == bScore)
+      return "TIE";
+    String result = (aScore > bScore ? "A" : "B");
     return result;
 
+  }
+
+  void initMoveMap() {
+    moveMap = new HashMap<>();
+    moveMap.put("r", 0);
+    moveMap.put("p", 1);
+    moveMap.put("s", 2);
+  }
+
+  String[][] sanitizeInput(String input) {
+
+    if (input.matches(".*[^RPSrps, ].*"))
+      throw new InvalidParameterException("Incorrect symbols in input.");
+
+    String[] players = input.toLowerCase().replaceAll("\\s+", "").split(",", 0);
+
+    if (players.length != 2)
+      throw new InvalidParameterException("Expected two players");
+    if (players[0].length() != players[1].length())
+      throw new InvalidParameterException("Expected players to have same number of moves");
+
+    String[] aMoves = players[0].split("");
+    String[] bMoves = players[1].split("");
+    String[][] playerMoves = { aMoves, bMoves };
+    return playerMoves;
   }
 }
