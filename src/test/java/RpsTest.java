@@ -1,5 +1,3 @@
-package uvu.cs.cs3250.assignments;
-
 import static org.junit.Assert.assertEquals;
 import java.security.InvalidParameterException;
 import org.junit.Test;
@@ -8,89 +6,93 @@ public class RpsTest {
 	public static Rps game = new Rps();
 
 	@Test
-	public void testAWins(){
-		String moves = "rpr,sss";
+	public void testAWins() {
+		// String moves = "rpr,sss";
+		String moves = "rs,ps,rs";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "A");
 	}
 
 	@Test
-	public void testBWins(){
-		String moves = "rpr, psr";
+	public void testBWins() {
+		// String moves = "rpr, psr";
+		String moves = "rp,ps,rr";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "B");
 	}
 
 	@Test
-	public void testTie(){
+	public void testTie() {
 		String moves = "ps,sp";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "TIE");
 	}
+
 	@Test
-	public void testStalemates(){
-		String moves = "rrppss,rrppss";
+	public void testStalemates() {
+		// String moves = "rrppss,rrppss";
+		String moves = "rr,rr,pp,pp,ss,ss";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "TIE");
 	}
 
 	@Test
-	public void testCaseInsensitive(){
-		String movesW = "psR,RPr";
+	public void testCaseInsensitive() {
+		// String movesW = "psR,RPr";
+		String movesW = "pR,sP,Rr";
 		String winnerW = game.whoWins(movesW);
 		assertEquals(winnerW, "A");
 
-		String movesT = "rRpPSs,RRppSS";
+		// String movesT = "rRpPSs,RRppSS";
+		String movesT = "rR,RR,pp,Pp,SS,sS";
 		String winnerT = game.whoWins(movesT);
 		assertEquals(winnerT, "TIE");
 	}
 
 	@Test
-	public void testManyWhitespace(){
-		String moves = "    rpssr ,   psrrs  ";
+	public void testManyWhitespace() {
+		// String moves = " rpssr , psrrs ";
+		String moves = "  rp, ps, sr,  sr ,  rs";
+
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "B");
 	}
 
 	@Test(expected = InvalidParameterException.class)
 	public void testWrongLength() {
-		String moves = "rrppss,s";
+		// String moves = "rrppss,s";
+		String moves = "rs,rp,s,sp,r";
 		game.whoWins(moves);
 	}
 
 	@Test(expected = InvalidParameterException.class)
-	public void testTooManyCommas(){
-		String moves = "rrpp,ssrp,rpss";
-		game.whoWins(moves);
-	}
-
-	@Test(expected = InvalidParameterException.class)
-	public void testAllEmpty(){
+	public void testAllEmpty() {
 		String moves = ",";
 		game.whoWins(moves);
 	}
 
 	@Test(expected = InvalidParameterException.class)
-	public void testOneEmpty(){
+	public void testOneEmpty() {
 		String moves = "rps,";
 		game.whoWins(moves);
 	}
 
 	@Test(expected = InvalidParameterException.class)
-	public void testNoComma(){
+	public void testNoComma() {
 		String moves = "rpsssr";
 		game.whoWins(moves);
 	}
 
 	@Test(expected = InvalidParameterException.class)
-	public void testInvalidCharAlpha(){
-		String moves = "rpqwe,sirru";
+	public void testInvalidCharAlpha() {
+		String moves = "rp,qw,es,ir";
 		game.whoWins(moves);
 	}
 
 	@Test(expected = InvalidParameterException.class)
-	public void testInvalidCharNum(){
-		String moves = "rr192,sr371";
+	public void testInvalidCharNum() {
+		// String moves = "rr192,sr371";
+		String moves = "rs, rr, 12, 31, 84";
 		game.whoWins(moves);
 	}
 
