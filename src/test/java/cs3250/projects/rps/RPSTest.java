@@ -86,4 +86,10 @@ public class RPSTest {
 		assertEquals("Player B Wins", RPS.rpsWinner("sr, Sp, rp, PS, rr"));
 	}
 	
+	//B wins
+	@Test
+	public void testRPSWinner_bWin_noSpaceBetweenLetters() {
+		assertEquals("Player B Wins", RPS.rpsWinner("sr,Sp,rp,PS,rr"));
+	}
+	
 }
