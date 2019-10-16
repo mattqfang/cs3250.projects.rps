@@ -34,7 +34,7 @@ public class RPSTest {
     @Test
     public void testInvalidCharacters() {
         RPS game = new RPS();
-        assertEquals("Draw", game.match("QQ,HG,bf,$z,**,23,{a"));
+        assertEquals("Draw", game.match("QQ,HG,  bf   ,  $z,**,23,{a"));
     }
     @Test
     public void testInvalidCharactersPlayerBWins() {
