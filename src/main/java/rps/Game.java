@@ -12,17 +12,22 @@ public class Game {
 		Player p2;
 		String[] playerInput = input.toUpperCase().trim().split(",");
 		
-		if (playerInput.length == 0) {
+		if (playerInput.length == 0)
 			throw new InvalidInput("No player input available.");
-		}
 
 		for (int i = 0; i < playerInput.length; i++) {
 			if (playerInput[i].length() != 2)
 				throw new InvalidInput();
 			
 			// Create players
-			p1 = Game.createPlayer(playerInput[i].charAt(0));
-			p2 = Game.createPlayer(playerInput[i].charAt(1));
+			p1 = Player.playerFactory(playerInput[i].charAt(0));
+			p2 = Player.playerFactory(playerInput[i].charAt(1));
+			
+			// Throw invalid input if player is Null
+			if (p1 == null)
+				throw new InvalidInput(String.valueOf(playerInput[i].charAt(0)) + " is not a valid input!");
+			if (p2 == null)
+				throw new InvalidInput(String.valueOf(playerInput[i].charAt(1)) + " is not a valid input!");
 			
 			// Get score
 			comparison = Player.compare(p1, p2);
@@ -38,20 +43,5 @@ public class Game {
 		if (p1Score < p2Score)
 			return "B";
 		return "DRAW";
-	}
-	
-	private static Player createPlayer (char input) throws InvalidInput {
-		Player player;
-		
-		if (input == 'P')
-			player = new Paper();
-		else if (input == 'S')
-			player = new Scissors();
-		else if (input == 'R')
-			player = new Rock();
-		else
-			throw new InvalidInput("Player 1 input isn't R, P, or S");
-		
-		return player;
 	}
 }
