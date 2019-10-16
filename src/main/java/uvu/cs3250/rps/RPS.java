@@ -1,54 +1,75 @@
 package uvu.cs3250.rps;
 
-import java.util.Arrays;
-
 public class RPS {
-    Integer playerA = 0;
-    Integer playerB = 0;
+    private Integer playerA = 0;
+    private Integer playerB = 0;
+    private Integer invalidRounds = 0;
+    private Integer roundsPlayed = 0;
 
-    public void round(String r){
+    //This function decides the outcome for provided round
+    private void round(String r){
         switch (r){
             case "RS":
             case "PR":
             case "SP":
                 playerA += 1;
-                System.out.println("Player A wins round");
-                System.out.println("Score A-" + playerA + " B-" + playerB);
                 break;
             case "RP":
             case "PS":
             case "SR":
                 playerB += 1;
-                System.out.println("Player B wins round");
-                System.out.println("Score A-" + playerA + " B-" + playerB);
                 break;
             default:
                 break;
         }
+        roundsPlayed += 1;
     }
-    public void result(String[] args){
-        for (String s : args) {
-            round(s);
-        }
+
+    //Function containing a control block that returns the victor for the match and other match information
+    private String result(){
         if (playerA > playerB)
-            System.out.println("Player A wins");
-        else if (playerB > playerB)
-            System.out.println("Player B wins");
+            return "Player A wins";
+        else if (playerB > playerA)
+            return "Player B wins";
         else
-            System.out.println("Draw");
+            return "Draw";
     }
-    public void match(String args) {
+    public String match(String args) {
+        if (invalidRounds != 0 || roundsPlayed != 0)
+            reset();
         String[] input = args.split(",");
-        StringBuilder moves = new StringBuilder();
+
+        //Read through the input strings and select valid inputs to pass to round()
         for(String el : input) {
-            moves.append(el);
+            el = el.trim();
+            if (el.length() == 2 && el.matches("[rRpPsS]*"))
+                round(el.toUpperCase());
+            else
+                invalidRounds += 1;
         }
-//        System.out.println(moves.toString());
-        System.out.println("Number of moves is valid: " + (moves.length() % 2 == 0));
-        result(input);
+        return result();
+    }
+    private void reset() {
+        this.playerA = 0;
+        this.playerB = 0;
+        this.invalidRounds = 0;
+        this.roundsPlayed = 0;
+    }
+    public Integer getInvalidRounds() {
+        return invalidRounds;
+    }
+
+    public Integer getRoundsPlayed() {
+        return roundsPlayed;
     }
     public static void main(String[] args){
         RPS game = new RPS();
-        game.match("RP,PR,SS,SS");
+        System.out.println(game.match("RP,  pr  ,  SSR,sR"));
+        System.out.println("Total rounds played: " + game.getRoundsPlayed());
+        System.out.println("Total invalid rounds: " + game.getInvalidRounds());
+        System.out.println(game.match("dda;slkdf;lknzxc;nv"));
+        System.out.println("Total rounds played: " + game.getRoundsPlayed());
+        System.out.println("Total invalid rounds: " + game.getInvalidRounds());
+
     }
 }
