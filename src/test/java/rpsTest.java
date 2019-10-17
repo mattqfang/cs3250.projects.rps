@@ -8,38 +8,40 @@ import org.junit.Test;
 public class rpsTest {
 
 	@Test
-	public void drawTest() {
+	public void aWinner() 
+	{
 		RockPaperScissors rsp = new RockPaperScissors();
-		String data[] = {"RR", "PP", "SS", "SR", "RP", "PS","RR", "PP", "SS","RS", "SP", "PR","RR", "PP", "SS"};
-		String result = rsp.shoot(data);
-		assertEquals("DRAW", result);
-		
+		String input = "RS,RS,PR,PP";
+		String winner = rsp.declareWinner(input);
+		assertEquals("A", winner);
 	}
-	@Test
-	public void aWinTest() {
-		RockPaperScissors rsp = new RockPaperScissors();
-		String data[] = {"RS", "SP", "PR","RR", "PP", "SS"};
-		String result = rsp.shoot(data);
-		assertEquals("A", result);
 		
-	}
 	@Test
-	public void BWinTest() {
+	public void drawTest() 
+	{
 		RockPaperScissors rsp = new RockPaperScissors();
-		String data[] = {"SR", "RP", "PS","RR", "PP", "SS"};
-		String result = rsp.shoot(data);
-		assertEquals("B", result);
-		
-	}
-	@Test
-	public void invalidTest() {
-		RockPaperScissors rsp = new RockPaperScissors();
-		String data[] = {"SR", "RP", "PS","RR", "PP", "SSS"};
-		String result = rsp.shoot(data);
-		assertEquals("error: only 2 players allowed", result);
+		String input = "RR,PP,SS";
+		String winner = rsp.declareWinner(input);
+		assertEquals("DRAW", winner);
 		
 	}
 	
-
+	@Test
+	public void bWinner() 
+	{
+		RockPaperScissors rsp = new RockPaperScissors();
+		String input = "SR,RP,PR,PP,SS,SR";
+		String winner = rsp.declareWinner(input);
+		assertEquals("B", winner);
+	}
+		
+	@Test
+	public void lowerCase() 
+	{
+		RockPaperScissors rsp = new RockPaperScissors();
+		String input = "rs,RS,pR,Pp";
+		String winner = rsp.declareWinner(input);
+		assertEquals("A", winner);
+	}
 
 }
