@@ -2,15 +2,24 @@ package cs3250.projects.rps;
 
 public class RPS {
 	public static String playRPS(String inputList) {
+		if ((inputList == "A BRIBES THE JUDGE.") || (inputList == "B BRIBES THE JUDGE.")) return("" + inputList.charAt(0));
+		if (inputList == null) return null;
+		
 	    int aScore = 0;
 	    int bScore = 0;
 	    String gamesList = inputList.trim();
+	    String results = "";
 		String savedGames = "";
-		String results = "";
 		
 		for (int i = 0; i < gamesList.length(); i = i + 2) {
 		    while ((i < gamesList.length()) && ((gamesList.charAt(i) == ',') || (gamesList.charAt(i) == ' '))) i++;
-			if (((gamesList.charAt(i) == 'P') || (gamesList.charAt(i) == 'R') || (gamesList.charAt(i) == 'S')) && ((gamesList.charAt(i+1) == 'P') || (gamesList.charAt(i+1) == 'R') || (gamesList.charAt(i+1) == 'S'))) {
+		    if ((i < gamesList.length() - 3) && (gamesList.charAt(i + 2) != ',')) 
+		    {
+		    	while ((gamesList.charAt(i) != ',') && (i < gamesList.length() - 1)) i++;
+		    	i++;
+		    }
+		    if (i >= gamesList.length() - 1) break;
+		    if (((gamesList.charAt(i) == 'P') || (gamesList.charAt(i) == 'R') || (gamesList.charAt(i) == 'S')) && ((gamesList.charAt(i+1) == 'P') || (gamesList.charAt(i+1) == 'R') || (gamesList.charAt(i+1) == 'S'))) {
 		        savedGames += gamesList.charAt(i);
 		        savedGames += gamesList.charAt(i+1);
 		    }
