@@ -2,61 +2,57 @@ class RockPaperScissors{
 	public static void main(String[] args) {
 		;
 	}
-	public String shoot(String[] match){
-		int a = 0;
-		int b = 0;
-		for(int i =0; i<match.length;i++) {
-			if(match[i].length()>2) {
-				return"error: only 2 players allowed";
-						
+	public String play(String[] games){
+		int aWins = 0;
+		int bWins = 0;
+		
+		for(int i = 0; i < games.length; i++) {
+			if(games[i].length() > 2) {
+				return "Invalid game!";	
 			}
 			else {
-				char aMove= match[i].charAt(0);
-				char bMove= match[i].charAt(1);
-				if(aMove == 'R' && bMove == 'R') {
-					//tie
+				switch(games[i]) {
+				case "RR": {
+					break;
 				}
-				if(aMove == 'R' && bMove == 'P') {
-					b++;
+				case "RP": {
+					bWins++;
+					break;
 				}
-				if(aMove == 'R' && bMove == 'S') {
-					a++;
+				case "RS": {
+					aWins++;
+					break;
 				}
-				if(aMove == 'P' && bMove == 'P') {
-					//tie
+				case "PR": {
+					aWins++;
+					break;
 				}
-				if(aMove == 'P' && bMove == 'R') {
-					a++;
+				case "PP": {
+					break;
 				}
-				if(aMove == 'P' && bMove == 'S') {
-					b++;
+				case "PS": {
+					bWins++;
+					break;
 				}
-				if(aMove == 'S' && bMove == 'S') {
-					//tie
+				case "SR": {
+					bWins++;
+					break;
 				}
-				if(aMove == 'S' && bMove == 'R') {
-					b++;
+				case "SP": {
+					aWins++;
+					break;
 				}
-				if(aMove == 'S' && bMove == 'P') {
-					a++;
+				case "SS": {
+					break;
+				}
 				}
 			}
-			
 		}
-		if(a>b) {
-			return "A";
-		}
-		else if(a<b) {
-			return "B";
-		}
-		else if(a==b) {
+		
+		if (aWins == bWins) {
 			return "DRAW";
 		}
-		else {
-			return"Check the score A:"+ a + "B:" + b +"/n";
-		}
 		
-		
-		
+		return aWins > bWins ? "A" : "B";
 	}
 }
