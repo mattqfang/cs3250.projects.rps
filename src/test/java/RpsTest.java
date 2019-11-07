@@ -1,13 +1,13 @@
 import static org.junit.Assert.assertEquals;
-import java.security.InvalidParameterException;
 import org.junit.Test;
+
+import java.security.InvalidParameterException;
 
 public class RpsTest {
 	public static Rps game = new Rps();
 
 	@Test
 	public void testAWins() {
-		// String moves = "rpr,sss";
 		String moves = "rs,ps,rs";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "A");
@@ -15,7 +15,6 @@ public class RpsTest {
 
 	@Test
 	public void testBWins() {
-		// String moves = "rpr, psr";
 		String moves = "rp,ps,rr";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "B");
@@ -30,7 +29,6 @@ public class RpsTest {
 
 	@Test
 	public void testStalemates() {
-		// String moves = "rrppss,rrppss";
 		String moves = "rr,rr,pp,pp,ss,ss";
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "TIE");
@@ -38,12 +36,10 @@ public class RpsTest {
 
 	@Test
 	public void testCaseInsensitive() {
-		// String movesW = "psR,RPr";
 		String movesW = "pR,sP,Rr";
 		String winnerW = game.whoWins(movesW);
 		assertEquals(winnerW, "A");
 
-		// String movesT = "rRpPSs,RRppSS";
 		String movesT = "rR,RR,pp,Pp,SS,sS";
 		String winnerT = game.whoWins(movesT);
 		assertEquals(winnerT, "TIE");
@@ -51,16 +47,13 @@ public class RpsTest {
 
 	@Test
 	public void testManyWhitespace() {
-		// String moves = " rpssr , psrrs ";
 		String moves = "  rp, ps, sr,  sr ,  rs";
-
 		String winner = game.whoWins(moves);
 		assertEquals(winner, "B");
 	}
 
 	@Test(expected = InvalidParameterException.class)
 	public void testWrongLength() {
-		// String moves = "rrppss,s";
 		String moves = "rs,rp,s,sp,r";
 		game.whoWins(moves);
 	}
@@ -91,7 +84,6 @@ public class RpsTest {
 
 	@Test(expected = InvalidParameterException.class)
 	public void testInvalidCharNum() {
-		// String moves = "rr192,sr371";
 		String moves = "rs, rr, 12, 31, 84";
 		game.whoWins(moves);
 	}
