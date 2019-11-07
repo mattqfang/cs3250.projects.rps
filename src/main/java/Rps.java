@@ -12,14 +12,11 @@ public class Rps {
     int bScore = 0;
 
     for (String round : moves) {
-      if (aWins.contains(round))
-        ++aScore;
-      if (bWins.contains(round))
-        ++bScore;
+      if (aWins.contains(round)) ++aScore;
+      if (bWins.contains(round)) ++bScore;
     }
 
-    if (aScore == bScore)
-      return "TIE";
+    if (aScore == bScore) return "TIE";
     return (aScore > bScore ? "A" : "B");
   }
 
@@ -27,6 +24,7 @@ public class Rps {
 
     if (input.matches(".*[^RPSrps, ].*"))
       throw new InvalidParameterException("Incorrect symbols in input.");
+
     String[] game = input.toUpperCase().replaceAll("\\s+", "").split(",", 0);
     if (game.length == 0)
       throw new InvalidParameterException("No moves provided");
