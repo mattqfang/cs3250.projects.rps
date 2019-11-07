@@ -3,7 +3,7 @@ package rps;
 import java.util.regex.Pattern;
 
 public class RockPaperScissors {
-	final private static String ROCK = "r",
+	final private String ROCK = "r",
 								PAPER = "p",
 								SCISSORS = "s",
 								EMPTY_STRING = "String is empty",
@@ -17,15 +17,15 @@ public class RockPaperScissors {
 								REGEX_SPACE = "\\s",
 								NO_SPACE = "",
 								COMMA = ",";
-	final private static int 	REQUIRED_STRING_LENGTH = 2,
+	final private int REQUIRED_STRING_LENGTH = 2,
 								INT_ONE = 1,
 								INT_NEGATIVE_ONE = -1,
 								INT_TWO = 2,
 								INT_ZERO = 0;
 	
-	static Pattern patternValidGameCharacters = Pattern.compile(REGEX_VALID_RPS_CHARS);
+	private Pattern patternValidGameCharacters = Pattern.compile(REGEX_VALID_RPS_CHARS);
 	
-	public static String getRPSWinner(String str) {
+	public String getRPSWinner(String str) {
 		if(str == null || str.isEmpty()) 
 			return EMPTY_STRING;
 		
