@@ -3,10 +3,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Rps {
-  String[] aArr = { "RS", "PR", "SP" };
-  List<String> aWins = Arrays.asList(aArr);
-  String[] bArr = { "RP", "PS", "SR" };
-  List<String> bWins = Arrays.asList(bArr);
+  List<String> aWins = Arrays.asList("RS", "PR", "SP");
+  List<String> bWins = Arrays.asList("RP", "PS", "SR");
 
   public String whoWins(String input) {
     String[] moves = sanitizeInput(input);
