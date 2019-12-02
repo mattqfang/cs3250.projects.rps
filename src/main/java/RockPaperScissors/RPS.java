@@ -2,16 +2,7 @@ package RockPaperScissors;
 
 public class RPS {
 	
-	public static void main(String[] args) {
-		System.out.println("started");
-		
-		RPS rps = new RPS();
-		String winner = rps.checkWinner("ps, sp, rp");
-		
-		System.out.println("winner is " + winner);
-		
-		System.out.println("done");
-	}
+// main not needed, right?
 	
 	public String checkWinner(String input) {
 		Integer playerA = 0; 
