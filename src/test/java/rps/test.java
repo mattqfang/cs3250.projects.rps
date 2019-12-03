@@ -9,18 +9,19 @@ public class test {
 	}
 	@Test
 	public void testBwin() {
-		rps.RPSGAME("PR, PR, RS, RS");
+		rps.RPSGAME("RP, RP, SR, SR");
 	}
 	@Test
 	public void testDraw() {
 		rps.RPSGAME("PP, PP, PP, PP");
 	}
 	@Test
-	public void testWronginput() {
-		rps.RPSGAME("AA, BB, CC, DD");
-	}
-	@Test
-	public void testnull() {
+	public void testNULL() {
 		rps.RPSGAME("");
 	}
+	@Test
+	public void testInvalid() {
+		rps.RPSGAME("AA, BB, CC, DD");
+	}
+	
 }
